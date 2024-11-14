@@ -37,5 +37,13 @@ describe StringCalculator do
         expect(StringCalculator.add("//;\n1;2")).to eq 3
       end
     end
+
+    context 'error handling' do
+      context 'when a negative number is passed' do
+        it 'returns an error message with the negative number' do
+          expect {StringCalculator.add("-1") }.to raise_error("negative numbers not allowed <-1>")
+        end
+      end
+    end
   end
 end
