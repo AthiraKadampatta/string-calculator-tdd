@@ -44,6 +44,12 @@ describe StringCalculator do
           expect {StringCalculator.add("-1") }.to raise_error("negative numbers not allowed <-1>")
         end
       end
+
+      context 'when multiple negative numbers are passed' do
+        it 'returns an error message with the negative numbers separated by comma' do
+          expect {StringCalculator.add("-1, 2, 3, -4, 5") }.to raise_error("negative numbers not allowed <-1,-4>")
+        end
+      end
     end
   end
 end
