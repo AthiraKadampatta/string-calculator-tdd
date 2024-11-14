@@ -19,5 +19,11 @@ describe StringCalculator do
         expect(StringCalculator.add('1,5')).to eq 6
       end
     end
+
+    context 'for a string with 5 numbers separated by comma' do
+      it 'returns the sum of all the numbers' do
+        expect(StringCalculator.add('1,2,3,4,5')).to eq 15
+      end
+    end
   end
 end
