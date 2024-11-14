@@ -3,10 +3,7 @@ class StringCalculator
     delimiter, numbers = extract_delimiter_and_numbers(number_string)
 
     check_for_negatives(numbers, delimiter)
-
-    return numbers.to_i if numbers.length == 1
-
-    numbers.split(delimiter).map(&:to_i).sum
+    number_array(numbers, delimiter).sum
   end
 
   private
@@ -22,12 +19,20 @@ class StringCalculator
   end
 
   def self.check_for_negatives(numbers, delimiter)
-    num_arr = numbers.split(delimiter).map(&:to_i)
-
+    num_arr = number_array(numbers, delimiter)
     num_arr.each do |num|
       if num < 0
-        raise "negative numbers not allowed <#{numbers}>"
+        raise "negative numbers not allowed <#{extract_negatives(num_arr)}>"
+        return
       end
     end
+  end
+
+  def self.extract_negatives(num_arr)
+    num_arr.select { |n| n < 0 }.join(",")
+  end
+
+  def self.number_array(numbers, delimiter)
+    numbers.split(delimiter).map(&:to_i)
   end
 end
