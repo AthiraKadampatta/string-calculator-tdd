@@ -1,5 +1,5 @@
 class StringCalculator
   def self.add(numbers)
-    0
+    numbers.to_i
   end
 end
