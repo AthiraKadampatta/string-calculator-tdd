@@ -20,11 +20,9 @@ class StringCalculator
 
   def self.check_for_negatives(numbers, delimiter)
     num_arr = number_array(numbers, delimiter)
-    num_arr.each do |num|
-      if num < 0
-        raise "negative numbers not allowed <#{extract_negatives(num_arr)}>"
-        return
-      end
+    negatives = extract_negatives(num_arr)
+    unless negatives.empty?
+      raise "negative numbers not allowed <#{extract_negatives(num_arr)}>"
     end
   end
 
