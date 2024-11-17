@@ -5,11 +5,7 @@ class StringCalculator
     numbers_arr = number_array(numbers, delimiter)
     check_for_negatives(numbers_arr)
     
-    if delimiter == '*'
-      numbers_arr.inject(&:*)
-    else
-      numbers_arr.sum
-    end
+    calculate_result(numbers_arr, delimiter)
   end
 
   private
@@ -34,5 +30,13 @@ class StringCalculator
 
   def self.number_array(numbers, delimiter)
     numbers.split(delimiter).map(&:to_i)
+  end
+
+  def self.calculate_result(numbers_arr, delimiter)
+    if delimiter == '*'
+      numbers_arr.inject(&:*)
+    else
+      numbers_arr.sum
+    end
   end
 end
