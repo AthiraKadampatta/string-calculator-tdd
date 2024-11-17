@@ -38,6 +38,12 @@ describe StringCalculator do
       end
     end
 
+    context 'when delimiter is passed as a *' do
+      it 'returns the multiplication sum' do
+        expect(StringCalculator.add("//*\n2*3")).to eq 6
+      end
+    end
+
     context 'error handling' do
       context 'when a negative number is passed' do
         it 'returns an error message with the negative number' do
