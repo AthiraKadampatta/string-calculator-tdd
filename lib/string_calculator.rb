@@ -14,12 +14,13 @@ class StringCalculator
 
   private
 
+  DELIMITER_REGEX = %r{^//(\S+)\n(.+)$}
+  DEFAULT_DELIMITER = /,|\n/
+
   def self.extract_delimiter_and_numbers(number_string)
-    delimiter_regex = %r{^//(\S+)\n(.+)$}
+    match = number_string.match(DELIMITER_REGEX)
 
-    match = number_string.match(delimiter_regex)
-
-    return [/,|\n/, number_string] if match.nil?
+    return [DEFAULT_DELIMITER, number_string] if match.nil?
 
     [match[1], match[2]]
   end
