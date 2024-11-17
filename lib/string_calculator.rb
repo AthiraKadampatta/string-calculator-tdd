@@ -3,7 +3,14 @@ class StringCalculator
     delimiter, numbers = extract_delimiter_and_numbers(number_string)
 
     check_for_negatives(numbers, delimiter)
-    number_array(numbers, delimiter).sum
+
+    numbers_arr = number_array(numbers, delimiter)
+
+    if delimiter == '*'
+      numbers_arr.inject(&:*)
+    else
+      numbers_arr.sum
+    end
   end
 
   private
