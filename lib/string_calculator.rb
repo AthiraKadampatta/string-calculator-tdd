@@ -2,10 +2,9 @@ class StringCalculator
   def self.add(number_string)
     delimiter, numbers = extract_delimiter_and_numbers(number_string)
 
-    check_for_negatives(numbers, delimiter)
-
     numbers_arr = number_array(numbers, delimiter)
-
+    check_for_negatives(numbers_arr)
+    
     if delimiter == '*'
       numbers_arr.inject(&:*)
     else
@@ -25,16 +24,11 @@ class StringCalculator
     [match[1], match[2]]
   end
 
-  def self.check_for_negatives(numbers, delimiter)
-    num_arr = number_array(numbers, delimiter)
-    negatives = extract_negatives(num_arr)
+  def self.check_for_negatives(num_arr)
+    negatives = num_arr.select(&:negative?)
     unless negatives.empty?
-      raise "negative numbers not allowed <#{extract_negatives(num_arr)}>"
+      raise "negative numbers not allowed <#{negatives.join(",")}>"
     end
-  end
-
-  def self.extract_negatives(num_arr)
-    num_arr.select { |n| n < 0 }.join(",")
   end
 
   def self.number_array(numbers, delimiter)
